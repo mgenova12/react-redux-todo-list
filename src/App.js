@@ -2,7 +2,18 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
+
+import { getTodos } from './actions/todos-actions';
+
 class App extends Component {
+
+  componentDidMount(){
+    this.props.onGetTodos();
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -18,4 +29,25 @@ class App extends Component {
   }
 }
 
-export default App;
+const todosSelector = createSelector(
+  state => state.todos, 
+  todos => todos
+)
+
+const mapStateToProps = createSelector(
+  todosSelector, 
+  (todos) => ({
+    todos
+  })
+)
+
+
+const mapActionsToProps = {
+  onGetTodos: getTodos
+}
+
+
+
+
+export default connect(mapStateToProps, mapActionsToProps)(App);
+
