@@ -1,6 +1,7 @@
 import axios from 'axios'
 export const ADD_TODO = 'todos:addTodos'
 export const REQUEST_TODOS = 'todos:requestTodos'
+export const DELETE_TODO = 'todos:index'
 
 export function addTodos(newTodo){
 	return {
@@ -19,6 +20,16 @@ export function requestTodos(apiTodos){
 		}
 	}
 }
+
+export function deleteTodo(index){
+	return {
+		type: DELETE_TODO,
+		payload: {
+			todos: index
+		}
+	}
+}
+
 
 export function getTodos(){
 	return dispatch => {

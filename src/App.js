@@ -5,19 +5,29 @@ import './App.css';
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 
-import { getTodos } from './actions/todos-actions';
+import { addTodos, getTodos, deleteTodo } from './actions/todos-actions';
 
 class App extends Component {
+
+  onUpdateTodo(event){
+    event.preventDefault();
+    this.props.onAddTodo({title:this.refs.todo.value})
+  }
 
   componentDidMount(){
     this.props.onRequestTodos();
   }
 
+  deleteTodos(id){
+    let index = this.props.todos.findIndex(x => x.id === id)
+    this.props.onDeleteTodo(index)
+  }
 
   render() {
+    console.log(this.props.todos);
 
     let todo = this.props.todos.map(todo => {
-      return <p key={todo.id}> {todo.title}</p>
+      return <p onClick={this.deleteTodos.bind(this, todo.id)} key={todo.title}> {todo.title}</p>
     })
 
     return (
@@ -27,9 +37,16 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        { todo }
+
+        <form onSubmit={this.onUpdateTodo.bind(this)} > 
+          <div>
+            <label>Add Todo </label>
+            <input type="text" ref="todo" />
+          </div>
+          <input type='submit' value='Add To List' />
+        </form>
+          { todo }
       </div>
     );
   }
@@ -48,7 +65,9 @@ const mapStateToProps = createSelector(
 )
 
 const mapActionsToProps = {
-  onRequestTodos: getTodos
+  onRequestTodos: getTodos,
+  onAddTodo: addTodos,
+  onDeleteTodo: deleteTodo
 }
 
 
