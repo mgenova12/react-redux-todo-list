@@ -5,6 +5,8 @@ import './App.css';
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 
+import Button from 'material-ui/Button'
+
 import { addTodos, getTodos, deleteTodo } from './actions/todos-actions';
 
 class App extends Component {
@@ -38,19 +40,20 @@ class App extends Component {
         </header>
         <p className="App-intro">
         </p>
-
+    
         <form onSubmit={this.onUpdateTodo.bind(this)} > 
           <div>
             <label>Add Todo </label>
             <input type="text" ref="todo" />
           </div>
-          <input type='submit' value='Add To List' />
+          <Button variant="raised" color="primary" type='submit'> Add Todo</Button>
         </form>
           { todo }
       </div>
     );
   }
 }
+
 
 const todosSelector = createSelector(
   state => state.todos, 
