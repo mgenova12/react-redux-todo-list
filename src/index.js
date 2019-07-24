@@ -5,13 +5,13 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 import thunk from 'redux-thunk';
-import { Provider } from 'react-redux'
-import { applyMiddleware, compose, combineReducers, createStore } from 'redux'
+import { Provider } from 'react-redux';
+import { applyMiddleware, compose, combineReducers, createStore } from 'redux';
 
-import { todosReducer } from './reducers/todos-reducer'
+import { todosReducer } from './reducers/todos-reducer';
 
 const allReducers = combineReducers({ 
-	todos: todosReducer
+	todos: todosReducer,
 })
 
 const allStoreEnhancers = compose( 

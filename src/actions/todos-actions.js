@@ -1,9 +1,10 @@
-import axios from 'axios'
-export const ADD_TODO = 'todos:addTodos'
-export const REQUEST_TODOS = 'todos:requestTodos'
-export const DELETE_TODO = 'todos:index'
+import axios from 'axios';
+export const ADD_TODO = 'todos:addTodos';
+export const REQUEST_TODOS = 'todos:requestTodos';
+export const DELETE_TODO = 'todos:index';
 
-export function addTodos(newTodo){
+
+export function addTodos(newTodo) {
 	return {
 		type: ADD_TODO,
 		payload: {
@@ -12,7 +13,7 @@ export function addTodos(newTodo){
 	}
 }
 
-export function requestTodos(apiTodos){
+export function requestTodos(apiTodos) {
 	return {
 		type: REQUEST_TODOS,
 		payload: {
@@ -21,7 +22,7 @@ export function requestTodos(apiTodos){
 	}
 }
 
-export function deleteTodo(index){
+export function deleteTodo(index) {
 	return {
 		type: DELETE_TODO,
 		payload: {
@@ -30,8 +31,7 @@ export function deleteTodo(index){
 	}
 }
 
-
-export function getTodos(){
+export function getTodos() {
 	return dispatch => {
 		axios.get('https://jsonplaceholder.typicode.com/todos')
 		  .then(function (response) {

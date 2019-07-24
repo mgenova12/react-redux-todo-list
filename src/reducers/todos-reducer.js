@@ -1,10 +1,7 @@
-import { ADD_TODO } from '../actions/todos-actions'
-import { REQUEST_TODOS } from '../actions/todos-actions'
-import { DELETE_TODO } from '../actions/todos-actions'
-
 import update from 'immutability-helper';
+import { ADD_TODO, REQUEST_TODOS, DELETE_TODO } from '../actions/todos-actions';
 
-export function todosReducer(state=[], {type, payload}){
+export function todosReducer(state = [], { type, payload }) {
 	switch (type) {
 		case ADD_TODO:
 			return [payload.todos].concat(state);
@@ -14,6 +11,5 @@ export function todosReducer(state=[], {type, payload}){
 			return update(state, {$splice: [[payload.todos,1]] })
 		default: 
 			return state;
-	}	
+	}
 }
-
